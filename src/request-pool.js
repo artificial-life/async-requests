@@ -26,17 +26,18 @@ class RequestPool {
 		let id = this.idGenerator.generate();
 
 		let timeout = params && params.timeout || false;
-		let r = new Request(timeout);
+		let r = new Request(id, timeout);
 		_.assign(r, params);
 		this.requests[id] = r;
 
 		if (this.warn_at && (this.pending_requests > this.warn_at)) throw new Error('MY PENDING REQUEST IS OVER ' + this.warn_at);
 
-		return r.promise.catch((reason) => {
+		r.promise = r.promise.catch((reason) => {
 			if (reason.toString() == 'TimeoutError: operation timeout') this.removeRequest(id, reason);
 			throw reason;
 		});
 
+		return r;
 	}
 	removeRequest(id, reason) {
 		return _.unset(this.requests, id)

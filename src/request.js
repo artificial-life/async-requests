@@ -2,7 +2,7 @@
 
 const DEFAULT_TIMEOUT = 15000;
 
-function Request(timeout) {
+function Request(id, timeout) {
 	let resolve;
 	let reject;
 
@@ -14,7 +14,8 @@ function Request(timeout) {
 	return {
 		promise: promise,
 		resolve: resolve,
-		reject: reject
+		reject: reject,
+		id: id
 	}
 }
 

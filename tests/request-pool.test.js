@@ -14,7 +14,7 @@ describe('RequestPool', () => {
 		it('keys is strings', () => {
 			let RU = new RequestPool('uuid');
 			expect(RU.idGenerator).to.have.keys('generate');
-			RU.createRequest().catch(() => true);
+			RU.createRequest().promise.catch(() => true);
 			let first_key = _.keys(RU.requests)[0]
 			expect(first_key).to.be.a('string')
 		});
@@ -29,13 +29,13 @@ describe('RequestPool', () => {
 
 			for (var i = 0; i < 999; i++) {
 				let r = RC.createRequest();
-				r.catch(() => {
+				r.promise.catch(() => {
 					/*suppressed*/
 					return true;
 				})
 			}
 			expect(RC.idGenerator.current).to.equal(999);
-			RC.createRequest().catch(() => true);
+			RC.createRequest().promise.catch(() => true);
 			expect(RC.idGenerator.current).to.equal(0);
 		});
 	});
@@ -43,9 +43,9 @@ describe('RequestPool', () => {
 	describe('createRequest', () => {
 		it('is Promise', () => {
 			let request = RP.createRequest();
-			request.catch(() => true);
+			request.promise.catch(() => true);
 
-			expect(request).to.be.a('promise')
+			expect(request.promise).to.be.a('promise')
 		})
 	});
 
@@ -60,7 +60,7 @@ describe('RequestPool', () => {
 					some: 'data'
 				}
 			});
-			return request.then((data) => {
+			return request.promise.then((data) => {
 				expect(data).to.be.a('object')
 				done();
 			}).catch((e) => done(e));
@@ -76,7 +76,7 @@ describe('RequestPool', () => {
 					some: 'data'
 				}
 			});
-			return request.then((data) => {
+			return request.promise.then((data) => {
 				expect(RP.requests).to.be.empty;
 				done();
 			}).catch((e) => done(e));
@@ -87,7 +87,7 @@ describe('RequestPool', () => {
 				timeout: 500
 			});
 
-			return request.catch((reason) => {
+			return request.promise.catch((reason) => {
 				done();
 				return true;
 			})
