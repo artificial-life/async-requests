@@ -1,5 +1,7 @@
 'use strict'
 
+let Promise = require('bluebird');
+
 const DEFAULT_TIMEOUT = 15000;
 
 function Request(id, timeout) {
