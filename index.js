@@ -1,6 +1,6 @@
 'use strict'
 
 module.exports = {
-	request: require('./src/request.js'),
-	requestPool: require('./src/request-pool.js')
+	request: require('./build/request.js'),
+	requestPool: require('./build/request-pool.js')
 };
