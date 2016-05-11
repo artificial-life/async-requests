@@ -1,6 +1,6 @@
 'use strict'
 
-const DEFAULT_TIMEOUT = 15;
+const DEFAULT_TIMEOUT = 15000;
 
 function Request(timeout) {
 	let resolve;

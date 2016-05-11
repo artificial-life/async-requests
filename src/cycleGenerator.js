@@ -4,7 +4,8 @@ module.exports = function cycleGenerator(max) {
 	return {
 		current: 0,
 		generate: function () {
-			return (this.current++) % max
+			this.current = (this.current + 1) % max;
+			return this.current;
 		}
 	}
 };
