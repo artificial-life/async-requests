@@ -27,9 +27,7 @@
     "babel-plugin-remove-comments": "^2.0.0",
     "babel-plugin-transform-remove-console": "^6.8.0",
     "bluebird": "^3.3.5",
-    "lodash": "^4.12.0"
-  },
-  "devDependencies": {
+    "lodash": "^4.12.0",
     "babel-plugin-remove-comments": "^2.0.0",
     "babel-plugin-transform-remove-console": "^6.5.0",
     "babel-plugin-transform-strict-mode": "^6.6.5",
