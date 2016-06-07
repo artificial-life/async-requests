@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/artificial-life/async-requests#readme",
   "dependencies": {
+    "babel-plugin-remove-comments": "^2.0.0",
     "babel-plugin-transform-remove-console": "^6.8.0",
     "bluebird": "^3.3.5",
     "lodash": "^4.12.0"
